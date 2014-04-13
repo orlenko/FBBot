@@ -55,3 +55,6 @@ docs/_build/
 # Local SQLite databases
 *.sqlite3
 *.db
+
+# Project-specific ignores
+reference

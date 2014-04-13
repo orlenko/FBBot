@@ -1,0 +1,40 @@
+{% extends 'fbposter/jumbotron.html' %}
+
+
+{% block loginform %}
+	<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+{% endblock %}
+
+{% block jumbotron %}
+	<h1>Welcome</h1>
+	<p>
+		 Automated Facebook Poster will do your social networking work for you. Relax and enjoy the likes and reshares.
+	</p>
+{% endblock %}
+
+
+{% block maincontent %}
+	<h2>How does it work?</h2>
+	<div class="row">
+		<div class="col-md-4">
+			<h3>Step 1: Connect</h3>
+			<p>
+				Connecting with your Facebook account will allow the Automated Facebook Poster to create posts on your behalf.
+			</p>
+			<p><a class="btn btn-primary" href="#" role="button">Connect with Facebook &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h3>Step 2: Select</h3>
+			<p>
+				Name your favourite subreddits, and Automated Facebook Poster will start monitoring them and posting top links through your Facebook account.
+			</p>
+			<p><a class="btn btn-success" href="#" role="button">Select subreddits &raquo;</a></p>
+		</div>
+		<div class="col-md-4">
+			<h3>Step 3: Enjoy!</h3>
+			<p>
+				Lean back and behold the glory of automated content reposting. Enjoy the popularity your Facebook account automatically gains.
+			</p>
+		</div>
+	</div>
+{% endblock %}
