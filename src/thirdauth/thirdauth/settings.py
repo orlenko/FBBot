@@ -1,5 +1,5 @@
 """
-Django settings for FBBot project.
+Django settings for thirdauth project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '4t)9rn3aheop)w9l!id6o^%eejdtz8$16ni%^i-7zc)jh9r20g'
+SECRET_KEY = '1l%jw-nypxsz=u+f_zyu20&t6=g7ns4wkx_it7^5=8*p8)jqf%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -26,6 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -37,10 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social.apps.django_app.default',
-    'debug_toolbar',
-    'fbposter',
-    'redditreader',
-    'south',
+    'thirdauth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,31 +62,18 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social.apps.django_app.context_processors.login_redirect',
 )
 
-ROOT_URLCONF = 'FBBot.urls'
-
-WSGI_APPLICATION = 'FBBot.wsgi.application'
-
 AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.google.GoogleOAuth2',
-      'social.backends.twitter.TwitterOAuth',
-      'social.backends.yahoo.YahooOpenId',
+    'social.backends.twitter.TwitterOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
+ROOT_URLCONF = 'thirdauth.urls'
+
+WSGI_APPLICATION = 'thirdauth.wsgi.application'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1453809008189967'
 SOCIAL_AUTH_FACEBOOK_SECRET = '7275eafd377b8ea6bc0dbf98978176ca'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'en_US'}
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '202941396373-kf04dfpu7lql24tar5grnu5iqun50cvb.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'uvok2qstBAwaAzE9fiHrKLaP'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['profile']
-
-SOCIAL_AUTH_TWITTER_KEY = 'bCn2e0jti5ehNH20ZG3jKsAJA'
-SOCIAL_AUTH_TWITTER_SECRET = 'pPd8GFt0rcbLtLYYexgiB8GdUbFvyvseyJMgEBn9AmHbUTtiWo'
-
-LOGIN_REDIRECT_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
