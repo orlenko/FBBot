@@ -20,9 +20,6 @@
 			<li>
 				<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
 			</li>
-			<li>
-				<a href="{% url 'social:begin' 'linkedin' %}?next={{ request.path }}">Login with LinkedIn</a>
-			</li>
 		{% endif %}
 	</ul>
 {% endblock %}
@@ -43,14 +40,21 @@
 			<p>
 				Connecting with your Facebook account will allow the Automated Facebook Poster to create posts on your behalf.
 			</p>
-			<p><a class="btn btn-primary" href="#" role="button">Connect with Facebook &raquo;</a></p>
+			<p>
+				{% if user and not user.is_anonymous %}
+					<div class="alert alert-success">Done!</div>
+				{% else %}
+					<a class="btn btn-primary"
+						href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" role="button">Connect with Facebook &raquo;</a>
+				{% endif %}
+			</p>
 		</div>
 		<div class="col-md-4">
 			<h3>Step 2: Select</h3>
 			<p>
 				Name your favourite subreddits, and Automated Facebook Poster will start monitoring them and posting top links through your Facebook account.
 			</p>
-			<p><a class="btn btn-success" href="#" role="button">Select subreddits &raquo;</a></p>
+			<p><a class="btn btn-primary" href="#" role="button">Select subreddits &raquo;</a></p>
 		</div>
 		<div class="col-md-4">
 			<h3>Step 3: Enjoy!</h3>
@@ -58,5 +62,21 @@
 				Lean back and behold the glory of automated content reposting. Enjoy the popularity your Facebook account automatically gains.
 			</p>
 		</div>
+	</div>
+	<div class="row">
+		<h3>Currently pending messages:</h3>
+		{% for message in msgs %}
+			<p class="message-container" id="message-{{ message.pk }}">
+				<pre>{{ message.message }}</pre>
+				<a class="btn btn-success post-message" href=''>Post</a>
+				<a class="btn btn-danger cancel-message" href=''>Cancel</a>
+			</p><hr/>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<form action="{% url 'fbposter:mock-populate' %}" method='post'>
+			{% csrf_token %}
+			<input type="submit" value="Populate database with mock messages for facebook"/>
+		</form>
 	</div>
 {% endblock %}
