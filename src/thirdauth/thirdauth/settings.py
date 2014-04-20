@@ -72,9 +72,6 @@ ROOT_URLCONF = 'thirdauth.urls'
 
 WSGI_APPLICATION = 'thirdauth.wsgi.application'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1453809008189967'
-SOCIAL_AUTH_FACEBOOK_SECRET = '7275eafd377b8ea6bc0dbf98978176ca'
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
