@@ -21,3 +21,8 @@ class FacebookStatus(models.Model):
 
     def __unicode__(self):
         return self.message
+
+
+class Subreddit(models.Model):
+    name = models.CharField(max_length=255)
+    selected = models.BooleanField(default=False)

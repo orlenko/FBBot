@@ -14,12 +14,12 @@
 			<li>
 				<a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
 			</li>
 			<li>
 				<a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
-			</li>
+			</li> -->
 		{% endif %}
 	</ul>
 {% endblock %}
@@ -66,11 +66,12 @@
 	<div class="row">
 		<h3>Currently pending messages:</h3>
 		{% for message in msgs %}
-			<p class="message-container" id="message-{{ message.pk }}">
+			<div class="message-container" id="message-{{ message.pk }}">
 				<pre>{{ message.message }}</pre>
 				<a class="btn btn-success post-message" href=''>Post</a>
 				<a class="btn btn-danger cancel-message" href=''>Cancel</a>
-			</p><hr/>
+				<hr/>
+			</div>
 		{% endfor %}
 	</div>
 	<div class="row">

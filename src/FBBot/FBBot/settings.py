@@ -76,18 +76,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_FACEBOOK_KEY = '1453809008189967'
-SOCIAL_AUTH_FACEBOOK_SECRET = '7275eafd377b8ea6bc0dbf98978176ca'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'locale': 'en_US'}
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '202941396373-kf04dfpu7lql24tar5grnu5iqun50cvb.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'uvok2qstBAwaAzE9fiHrKLaP'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['profile']
-
-SOCIAL_AUTH_TWITTER_KEY = 'bCn2e0jti5ehNH20ZG3jKsAJA'
-SOCIAL_AUTH_TWITTER_SECRET = 'pPd8GFt0rcbLtLYYexgiB8GdUbFvyvseyJMgEBn9AmHbUTtiWo'
-
 LOGIN_REDIRECT_URL = '/'
 
 # Database
@@ -118,3 +106,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+try:
+    from settings_local import *
+except:
+    pass
