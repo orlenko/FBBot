@@ -25,4 +25,17 @@ class FacebookStatus(models.Model):
 
 class Subreddit(models.Model):
     name = models.CharField(max_length=255)
-    selected = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return '%s (#%s)' % (self.name, self.id)
+
+
+class UserSubreddit(models.Model):
+    user = models.ForeignKey(User)
+    subreddit = models.ForeignKey(Subreddit)
+
+    def __unicode__(self):
+        try:
+            return '%s - %s' % (self.user, self.subreddit)
+        except:
+            return '%s - %s' % (self.user_id, self.subreddit_id)

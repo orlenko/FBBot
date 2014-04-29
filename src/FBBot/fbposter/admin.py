@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FacebookStatus
+from .models import FacebookStatus, Subreddit, UserSubreddit
 
 
 class FacebookStatusAdmin(admin.ModelAdmin):
@@ -8,3 +8,6 @@ class FacebookStatusAdmin(admin.ModelAdmin):
     list_filter = ['author', 'status', 'publish_timestamp']
 
 admin.site.register(FacebookStatus, FacebookStatusAdmin)
+
+admin.site.register(Subreddit)
+admin.site.register(UserSubreddit)

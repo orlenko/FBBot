@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+
+# Adapted from http://www.copysense.co.uk/limerick.php
+
 import random
 
 

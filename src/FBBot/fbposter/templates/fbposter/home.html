@@ -54,7 +54,31 @@
 			<p>
 				Name your favourite subreddits, and Automated Facebook Poster will start monitoring them and posting top links through your Facebook account.
 			</p>
-			<p><a class="btn btn-primary" href="#" role="button">Select subreddits &raquo;</a></p>
+			{% if user and not user.is_anonymous %}
+				<p>
+					<form action="{% url 'fbposter:configure-reddit' %}" method='post'>
+						{% csrf_token %}
+						{% for reddit, info in reddits.items %}
+							<div>
+								<label>
+									<input type="checkbox"
+										name="subreddit"
+										value="{{ reddit }}"
+										id="reddit-{{ reddit }}"
+										{% if info.selected %}checked="checked"{% endif %} />
+									{{ info.subreddit.name }}
+								</label>
+							</div>
+						{% endfor %}
+						<div>
+							<label>
+								Custom: <input type="text" name="subreddit_custom"/>
+							</label>
+						</div>
+						<input type="submit" class="btn bnt-primary" value="Select subreddits &raquo;" />
+					</form>
+				</p>
+			{% endif %}
 		</div>
 		<div class="col-md-4">
 			<h3>Step 3: Enjoy!</h3>
@@ -62,22 +86,5 @@
 				Lean back and behold the glory of automated content reposting. Enjoy the popularity your Facebook account automatically gains.
 			</p>
 		</div>
-	</div>
-	<div class="row">
-		<h3>Currently pending messages:</h3>
-		{% for message in msgs %}
-			<div class="message-container" id="message-{{ message.pk }}">
-				<pre>{{ message.message }}</pre>
-				<a class="btn btn-success post-message" href=''>Post</a>
-				<a class="btn btn-danger cancel-message" href=''>Cancel</a>
-				<hr/>
-			</div>
-		{% endfor %}
-	</div>
-	<div class="row">
-		<form action="{% url 'fbposter:mock-populate' %}" method='post'>
-			{% csrf_token %}
-			<input type="submit" value="Populate database with mock messages for facebook"/>
-		</form>
 	</div>
 {% endblock %}
